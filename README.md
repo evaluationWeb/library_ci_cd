@@ -26,6 +26,10 @@ DATABASE_HOST=localhost:3306
 DATABASE_USERNAME=root
 DATABASE_PASSWORD=root
 DATABASE_NAME=ci_cd
+UPLOAD_DIRECTORY=public/assets/uploads
+UPLOAD_PUBLIC_PATH=/assets/uploads
+UPLOAD_SIZE_MAX=2097152
+UPLOAD_FORMAT_WHITE_LIST=["png","jpg","jpeg","webp"]
 ```
 
 ### 4 Créer la base de données avec le script db.sql
