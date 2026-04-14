@@ -1,0 +1,130 @@
+:root {
+    --pico-font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    --pico-background-color: #f4f1ea;
+    --pico-card-background-color: #fffdfa;
+    --pico-card-border-color: rgba(53, 56, 52, 0.12);
+    --pico-muted-border-color: rgba(53, 56, 52, 0.12);
+    --pico-color: #22261f;
+    --pico-muted-color: #5f665c;
+    --pico-primary: #2f5a4f;
+    --pico-primary-hover: #274c43;
+    --pico-primary-focus: rgba(47, 90, 79, 0.2);
+    --pico-secondary: #d9d2c5;
+    --pico-secondary-hover: #cbc2b2;
+    --pico-secondary-focus: rgba(95, 102, 92, 0.16);
+    --pico-contrast: #7a3e2f;
+    --pico-contrast-hover: #653325;
+    --pico-form-element-background-color: #fffdfa;
+    --pico-form-element-border-color: rgba(53, 56, 52, 0.18);
+    --pico-form-element-color: #22261f;
+}
+
+body {
+    background:
+        radial-gradient(circle at top left, rgba(255, 255, 255, 0.85), transparent 32%),
+        linear-gradient(180deg, #f7f4ee 0%, #f1ede5 100%);
+    min-height: 100vh;
+}
+
+main.container {
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+}
+
+.container > header:first-child,
+main > article > header:first-child {
+    margin-bottom: 1.5rem;
+}
+
+nav {
+    background: rgba(255, 253, 250, 0.82);
+    border: 1px solid rgba(53, 56, 52, 0.08);
+    border-radius: 1rem;
+    padding: 0.85rem 1.1rem;
+    margin-top: 1rem;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 16px 40px rgba(46, 42, 35, 0.06);
+}
+
+nav ul {
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+nav a {
+    font-weight: 500;
+    text-decoration: none;
+}
+
+article {
+    box-shadow: 0 18px 50px rgba(46, 42, 35, 0.06);
+}
+
+.grid {
+    align-items: start;
+}
+
+.grid > article {
+    height: 100%;
+}
+
+img {
+    border-radius: 0.75rem;
+}
+
+footer.container {
+    padding-bottom: 2rem;
+}
+
+footer.container small {
+    display: block;
+    text-align: center;
+    color: var(--pico-muted-color);
+}
+
+small {
+    color: var(--pico-muted-color);
+}
+
+[aria-invalid="true"],
+article[aria-invalid="true"] {
+    border-color: rgba(122, 62, 47, 0.28);
+}
+
+article[aria-invalid="true"] {
+    background: rgba(122, 62, 47, 0.06);
+    color: #5d2d22;
+}
+
+article p:last-child {
+    margin-bottom: 0;
+}
+
+article footer {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    padding-top: 0.5rem;
+}
+
+article footer a[role="button"] {
+    margin-bottom: 0;
+}
+
+select[multiple] {
+    min-height: 12rem;
+}
+
+@media (max-width: 768px) {
+    nav {
+        padding: 0.9rem;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    article footer {
+        flex-direction: column;
+    }
+}
