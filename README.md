@@ -14,8 +14,9 @@ https://github.com/evaluationWeb/library_ci_cd
 
 ### 2 installer les dépendances :  
 ```sh
-# saisir la commande suivante
+# saisir les commandes suivantes
 composer install
+npm install
 ```
 
 ### 3 Créer un fichier .env (à la racine du projet)
