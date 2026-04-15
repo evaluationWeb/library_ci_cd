@@ -1,10 +1,14 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
+    # Laisser accessibles les ressources publiques
+    RewriteRule ^assets/(.*)$ public/assets/$1 [L]
+
     # Ne pas retraiter les requetes deja dans /public
     RewriteRule ^public/ - [L]
 
-    # Rediriger tout le trafic vers le dossier public
-    RewriteCond %{REQUEST_URI} !^/public/
-    RewriteRule ^(.*)$ public/$1 [L]
+    # Front controller
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^.*$ public/index.php [QSA,L]
 </IfModule>
