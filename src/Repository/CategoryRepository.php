@@ -6,6 +6,21 @@ use App\Entity\Category;
 
 class CategoryRepository extends AbstractRepository
 {
+    public function existsByName(string $name): bool
+    {
+        try {
+            $sql = 'SELECT c.id FROM category AS c WHERE LOWER(c.name) = LOWER(?)';
+            $req = $this->connect->prepare($sql);
+            $req->bindValue(1, trim($name), \PDO::PARAM_STR);
+            $req->execute();
+            $category = $req->fetch(\PDO::FETCH_ASSOC);
+        } catch (\PDOException $e) {
+            return false;
+        }
+
+        return !empty($category);
+    }
+
     public function findAll(): array
     {
         try {
@@ -49,6 +64,9 @@ class CategoryRepository extends AbstractRepository
 
             $category->setId((int) $this->connect->lastInsertId());
         } catch (\PDOException $e) {
+            if ((int) $e->getCode() === 23000) {
+                $category->setId(0);
+            }
             return $category;
         }
 

@@ -17,6 +17,7 @@ class CategoryController extends AbstractController
     {
         $data = [];
         $data["csrf_token"] = $this->getCsrfToken();
+        $data["form"] = $_POST;
 
         if ($this->isFormSubmitted($_POST)) {
             if (!$this->isCsrfTokenValid($_POST)) {

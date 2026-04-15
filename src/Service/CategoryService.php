@@ -24,10 +24,15 @@ class CategoryService
 
         $category = new Category();
         $category->setName($name);
+
+        if ($this->categoryRepository->existsByName($category->getName())) {
+            return ["errors" => ["name" => "Cette categorie existe deja"]];
+        }
+
         $savedCategory = $this->categoryRepository->create($category);
 
         if ($savedCategory->getId() === 0) {
-            return ["errors" => ["_form" => "Erreur lors de l'ajout de la categorie"]];
+            return ["errors" => ["name" => "Cette categorie existe deja"]];
         }
 
         return [

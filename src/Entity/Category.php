@@ -25,4 +25,9 @@ class Category
     {
         $this->name = $name;
     }
+
+    public function getNormalizedName(): string
+    {
+        return mb_strtolower(trim($this->name));
+    }
 }

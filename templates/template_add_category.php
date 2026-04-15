@@ -32,9 +32,16 @@
 
             <form method="post">
                 <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($data["csrf_token"] ?? "") ?>">
+                <?php $form = $data["form"] ?? []; ?>
 
                 <label for="name">Nom</label>
-                <input type="text" id="name" name="name" aria-invalid="<?= !empty($data["errors"]["name"]) ? 'true' : 'false' ?>">
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value="<?= htmlspecialchars($form["name"] ?? "") ?>"
+                    aria-invalid="<?= !empty($data["errors"]["name"]) ? 'true' : 'false' ?>"
+                >
                 <?php if (!empty($data["errors"]["name"])) : ?>
                     <small><?= htmlspecialchars($data["errors"]["name"]) ?></small>
                 <?php endif; ?>
