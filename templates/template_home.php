@@ -15,25 +15,21 @@
     <main class="container">
         <header>
             <h1>Bienvenue sur le site Library</h1>
-            <p>Gestion simple des categories, livres, utilisateurs et emprunts.</p>
+            <p>Gestion simple de livres, utilisateurs et emprunts.</p>
         </header>
 
         <section class="grid">
-            <article>
-                <header>Categories</header>
-                <strong><?= (int) ($data["categoriesCount"] ?? 0) ?></strong>
-            </article>
             <article>
                 <header>Livres</header>
                 <strong><?= (int) ($data["booksCount"] ?? 0) ?></strong>
             </article>
             <article>
-                <header>Utilisateurs</header>
-                <strong><?= (int) ($data["usersCount"] ?? 0) ?></strong>
-            </article>
-            <article>
                 <header>Emprunts</header>
                 <strong><?= (int) ($data["lendingsCount"] ?? 0) ?></strong>
+            </article>
+            <article>
+                <header>Utilisateurs</header>
+                <strong><?= (int) ($data["usersCount"] ?? 0) ?></strong>
             </article>
         </section>
     </main>
