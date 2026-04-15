@@ -22,14 +22,10 @@ class LendingService
 
     public function saveLending(array $post, int $userId): array
     {
-        $returnAt = trim($post["return_at"] ?? "");
         $mandatoryAt = trim($post["mandatory_at"] ?? "");
         $bookId = (int) ($post["book_id"] ?? 0);
         $errors = [];
 
-        if ($returnAt === "") {
-            $errors["return_at"] = "La date de retour est obligatoire";
-        }
         if ($mandatoryAt === "") {
             $errors["mandatory_at"] = "La date limite est obligatoire";
         }
@@ -54,8 +50,9 @@ class LendingService
         $lending = new Lending();
         $lending->setBook($book);
         $lending->setUser($user);
-        $lending->setLendAt(new \DateTime());
-        $lending->setReturnAt(new \DateTime($returnAt));
+        $currentDate = new \DateTime();
+        $lending->setLendAt($currentDate);
+        $lending->setReturnAt(clone $currentDate);
         $lending->setMandatoryAt(new \DateTime($mandatoryAt));
 
         $savedLending = $this->lendingRepository->create($lending);

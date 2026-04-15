@@ -51,16 +51,6 @@
                     </div>
                 </div>
 
-                <div class="grid">
-                    <div>
-                        <label for="return_at">Date de retour</label>
-                        <input type="datetime-local" id="return_at" name="return_at" value="<?= htmlspecialchars($form["return_at"] ?? "") ?>" aria-invalid="<?= !empty($data["errors"]["return_at"]) ? 'true' : 'false' ?>">
-                        <?php if (!empty($data["errors"]["return_at"])) : ?>
-                            <small><?= htmlspecialchars($data["errors"]["return_at"]) ?></small>
-                        <?php endif; ?>
-                    </div>
-                </div>
-
                 <label for="mandatory_at">Date limite</label>
                 <input type="date" id="mandatory_at" name="mandatory_at" value="<?= htmlspecialchars($form["mandatory_at"] ?? "") ?>" aria-invalid="<?= !empty($data["errors"]["mandatory_at"]) ? 'true' : 'false' ?>">
                 <?php if (!empty($data["errors"]["mandatory_at"])) : ?>
