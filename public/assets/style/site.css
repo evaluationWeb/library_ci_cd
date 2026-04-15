@@ -72,6 +72,11 @@ img {
     border-radius: 0.75rem;
 }
 
+.book-title {
+    font-size: 1.2rem;
+    line-height: 1.3;
+}
+
 footer.container {
     padding-bottom: 2rem;
 }
@@ -84,6 +89,46 @@ footer.container small {
 
 small {
     color: var(--pico-muted-color);
+}
+
+.availability-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.2rem 0.65rem;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.78rem;
+    letter-spacing: 0.01em;
+    margin-top: 0.35rem;
+}
+
+.availability-badge.is-available {
+    background: rgba(47, 90, 79, 0.12);
+    color: #1f5b43;
+}
+
+.availability-badge.is-unavailable {
+    background: rgba(122, 62, 47, 0.12);
+    color: #8a2f1d;
+}
+
+.category-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin: 0.9rem 0 1rem;
+}
+
+.category-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.22rem 0.7rem;
+    border-radius: 999px;
+    background: rgba(95, 102, 92, 0.1);
+    color: #455046;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
 }
 
 [aria-invalid="true"],

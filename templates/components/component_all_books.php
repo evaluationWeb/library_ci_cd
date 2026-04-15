@@ -14,24 +14,22 @@
                 <?php endif; ?>
 
                 <header>
-                    <strong><?= htmlspecialchars($book->getTitle()) ?></strong>
+                    <strong class="book-title"><?= htmlspecialchars($book->getTitle()) ?></strong>
                 </header>
 
                 <p>
-                    par <?= htmlspecialchars($book->getAuthor()) ?><br>
-                    <small><?= $book->isAvailable() ? 'Disponible' : 'Indisponible' ?></small>
+                    par <strong><?= htmlspecialchars($book->getAuthor()) ?></strong><br>
+                    <small class="availability-badge <?= $book->isAvailable() ? 'is-available' : 'is-unavailable' ?>">
+                        <?= $book->isAvailable() ? 'Disponible' : 'Indisponible' ?>
+                    </small>
                 </p>
 
                 <?php if ($book->getCategories() !== []) : ?>
-                    <?php
-                    $names = [];
-                    foreach ($book->getCategories() as $category) {
-                        $names[] = $category->getName();
-                    }
-                    ?>
-                    <p>
-                        <small>Categories : <?= htmlspecialchars(implode(', ', $names)) ?></small>
-                    </p>
+                    <div class="category-list">
+                        <?php foreach ($book->getCategories() as $category) : ?>
+                            <span class="category-pill"><?= htmlspecialchars($category->getName()) ?></span>
+                        <?php endforeach; ?>
+                    </div>
                 <?php endif; ?>
 
                 <p><?= htmlspecialchars($book->getDescription()) ?></p>
