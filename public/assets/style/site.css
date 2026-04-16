@@ -116,6 +116,7 @@ article {
 
 .grid {
     align-items: start;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .grid > article {
@@ -252,5 +253,11 @@ select[multiple] {
 
     article footer {
         flex-direction: column;
+    }
+}
+
+@media (max-width: 1200px) {
+    .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
