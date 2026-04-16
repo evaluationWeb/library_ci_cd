@@ -105,6 +105,11 @@ class BookRepository extends AbstractRepository
             $req->bindValue(1, $id, \PDO::PARAM_INT);
             $req->execute();
 
+            $sql = 'DELETE FROM lending WHERE book_id = ?';
+            $req = $this->connect->prepare($sql);
+            $req->bindValue(1, $id, \PDO::PARAM_INT);
+            $req->execute();
+
             $sql = 'DELETE FROM book WHERE id = ?';
             $req = $this->connect->prepare($sql);
             $req->bindValue(1, $id, \PDO::PARAM_INT);
