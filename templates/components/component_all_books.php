@@ -40,7 +40,10 @@
                             <a href="/lending/add?book_id=<?= $book->getId() ?>" role="button">Emprunter</a>
                         <?php endif; ?>
                         <a href="/book/edit/<?= $book->getId() ?>" role="button" class="secondary">Modifier</a>
-                        <a href="/book/delete/<?= $book->getId() ?>" role="button" class="contrast" onclick="return confirm('Supprimer ce livre ?');">Supprimer</a>
+                        <form method="post" action="/book/delete/<?= $book->getId() ?>" onsubmit="return confirm('Supprimer ce livre ?');">
+                            <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($data["csrf_token"] ?? "") ?>">
+                            <button type="submit" class="contrast">Supprimer</button>
+                        </form>
                     </footer>
                 <?php endif; ?>
             </article>

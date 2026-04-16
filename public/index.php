@@ -39,7 +39,7 @@ $router->map(Route::controller('GET', '/book/add', App\Controller\BookController
 $router->map(Route::controller('POST', '/book/add', App\Controller\BookController::class, 'addBook', ['ROLE_USER', 'ROLE_ADMIN']));
 $router->map(Route::controller('GET', '/book/edit/{id}', App\Controller\BookController::class, 'editBook', ['ROLE_USER', 'ROLE_ADMIN']));
 $router->map(Route::controller('POST', '/book/edit/{id}', App\Controller\BookController::class, 'editBook', ['ROLE_USER', 'ROLE_ADMIN']));
-$router->map(Route::controller('GET', '/book/delete/{id}', App\Controller\BookController::class, 'deleteBook', ['ROLE_USER', 'ROLE_ADMIN']));
+$router->map(Route::controller('POST', '/book/delete/{id}', App\Controller\BookController::class, 'deleteBook', ['ROLE_USER', 'ROLE_ADMIN']));
 $router->map(Route::controller('GET', '/book/all', App\Controller\BookController::class, 'showAllBooks', ['ROLE_USER', 'ROLE_ADMIN']));
 
 $router->map(Route::controller('GET', '/user/add', App\Controller\UserController::class, 'addUser', ['ROLE_ADMIN']));

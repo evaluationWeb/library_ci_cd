@@ -74,6 +74,12 @@ class BookController extends AbstractController
 
     public function deleteBook(int $id): void
     {
+        if (!$this->isCsrfTokenValid($_POST)) {
+            http_response_code(403);
+            header("Location: /book/all");
+            exit;
+        }
+
         $this->bookService->deleteBook($id);
         header("Location: /book/all");
         exit;
@@ -82,6 +88,7 @@ class BookController extends AbstractController
     public function showAllBooks(): mixed
     {
         $data = [];
+        $data["csrf_token"] = $this->getCsrfToken();
         $data["books"] = $this->bookService->getAllBooks();
 
         return $this->render("books", "Liste des livres", $data);
