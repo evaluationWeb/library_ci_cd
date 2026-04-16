@@ -98,12 +98,25 @@ class BookRepository extends AbstractRepository
     public function delete(int $id): bool
     {
         try {
+            $this->connect->beginTransaction();
+
+            $sql = 'DELETE FROM book_category WHERE book_id = ?';
+            $req = $this->connect->prepare($sql);
+            $req->bindValue(1, $id, \PDO::PARAM_INT);
+            $req->execute();
+
             $sql = 'DELETE FROM book WHERE id = ?';
             $req = $this->connect->prepare($sql);
             $req->bindValue(1, $id, \PDO::PARAM_INT);
+            $deleted = $req->execute();
 
-            return $req->execute();
+            $this->connect->commit();
+
+            return $deleted;
         } catch (\PDOException $e) {
+            if ($this->connect->inTransaction()) {
+                $this->connect->rollBack();
+            }
             return false;
         }
     }

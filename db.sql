@@ -49,8 +49,10 @@ category_id INT,
 PRIMARY KEY(book_id, category_id),
 CONSTRAINT fk_completed_book
 FOREIGN KEY(book_id)
-REFERENCES book(id),
+REFERENCES book(id)
+ON DELETE CASCADE,
 CONSTRAINT fk_completed_category
 FOREIGN KEY(category_id)
 REFERENCES category(id)
+ON DELETE CASCADE
 )ENGINE=InnoDB;
