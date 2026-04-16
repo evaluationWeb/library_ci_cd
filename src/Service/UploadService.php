@@ -49,12 +49,19 @@ class UploadService
             throw new UploadException("Le format " . $ext . " est invalide");
         }
 
-        if (!is_dir($this->uploadTarget) && !mkdir($this->uploadTarget, 0777, true) && !is_dir($this->uploadTarget)) {
+        if (!is_dir($this->uploadTarget) && !mkdir($this->uploadTarget, 0755, true) && !is_dir($this->uploadTarget)) {
             throw new UploadException("Dossier d'upload introuvable ou non inscriptible");
         }
 
         if (!is_writable($this->uploadTarget)) {
             throw new UploadException("Dossier d'upload introuvable ou non inscriptible");
+        }
+        if (!$this->validateMimeType($files["tmp_name"])) {
+            throw new UploadException("Type MIME invalide");
+        }
+
+        if (!$this->validateImageContent($files["tmp_name"])) {
+            throw new UploadException("Image invalide");
         }
 
         $newName = $this->renameFile($ext);
@@ -94,5 +101,22 @@ class UploadService
     private function getFileExtension(string $fileName): string
     {
         return strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+    }
+
+    private function validateMimeType(string $tmpName): bool
+    {
+        $finfo = new \finfo(FILEINFO_MIME_TYPE);
+        $mime = $finfo->file($tmpName);
+
+        return in_array($mime, [
+            'image/png',
+            'image/jpeg',
+            'image/webp'
+        ], true);
+    }
+
+    private function validateImageContent(string $tmpName): bool
+    {
+        return @getimagesize($tmpName) !== false;
     }
 }
