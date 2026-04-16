@@ -1,6 +1,5 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    RewriteBase /public/
 
     # Servir directement les fichiers et dossiers existants
     RewriteCond %{REQUEST_FILENAME} -f [OR]

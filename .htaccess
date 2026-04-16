@@ -1,14 +1,9 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
-    # Laisser accessibles les ressources publiques
-    RewriteRule ^assets/(.*)$ public/assets/$1 [L]
-
-    # Ne pas retraiter les requetes deja dans /public
+    # Si Apache pointe sur la racine du projet, basculer vers /public.
     RewriteRule ^public/ - [L]
-
-    # Front controller
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^.*$ public/index.php [QSA,L]
+    RewriteRule ^(.*)$ public/$1 [L]
 </IfModule>

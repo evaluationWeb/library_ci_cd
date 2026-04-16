@@ -6,6 +6,7 @@ RUN apt-get update \
         unzip \
         libfreetype6-dev \
         libjpeg62-turbo-dev \
+        libonig-dev \
         libpng-dev \
         libwebp-dev \
         libzip-dev \
