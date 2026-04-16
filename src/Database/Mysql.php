@@ -6,9 +6,21 @@ class Mysql
 {
     public static function connectBdd(): \PDO
     {
-        //Création d'un objet PDO
+        $hostValue = $_ENV["DATABASE_HOST"] ?? "localhost";
+        $port = $_ENV["DATABASE_PORT"] ?? null;
+
+        if ($port === null && str_contains($hostValue, ':')) {
+            [$hostValue, $port] = explode(':', $hostValue, 2);
+        }
+
+        $dsn = 'mysql:host=' . $hostValue
+            . (!empty($port) ? ';port=' . $port : '')
+            . ';dbname=' . $_ENV["DATABASE_NAME"]
+            . ';charset=utf8mb4';
+
+        // Creation d'un objet PDO
         return new \PDO(
-            'mysql:host=' . $_ENV["DATABASE_HOST"] . ';dbname=' . $_ENV["DATABASE_NAME"] . ';charset=utf8mb4',
+            $dsn,
             $_ENV["DATABASE_USERNAME"],
             $_ENV["DATABASE_PASSWORD"],
             [
