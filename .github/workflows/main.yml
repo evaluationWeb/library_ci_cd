@@ -14,13 +14,21 @@ jobs:
   build:
     # image unbuntu
     runs-on: ubuntu-latest
+    # etape : checkout code
     steps:
       - name: checkout recuperation du code
         uses: actions/checkout@v6
-    
+      #install de php
+      - name: Setup PHP with PECL extension
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: pdo_mysql, intl, mbstring, zip
+          tools: composer
+          
 
 # job : build (environnemt du projet)
-# etape : checkout code
+
 # compiler le code
 
 # job : test (environnement du projet)
