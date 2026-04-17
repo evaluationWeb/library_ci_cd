@@ -55,12 +55,20 @@ jobs:
       - name: démarrer le serveur PHP
         run: |
           php -S 127.0.0.1:8080 -t public &
+      
       # install cypress
       - name : Test Cypress
         uses: cypress-io/github-action@v6
+      - name: build .env production
+        run: |
+         echo 'DATABASE_HOST=${{ secrets.DATABASE_HOST}}'>> .env
+         echo 'DATABASE_PORT=${{ secrets.DATABASE_PORT}}'>> .env
+         echo 'DATABASE_USERNAME=${{ secrets.DATABASE_USERNAME }}'>> .env
+         echo 'DATABASE_PASSWORD=${{ secrets.DATABASE_PASSWORD }}'>> .env
+         echo 'DATABASE_NAME=${{ secrets.DATABASE_NAME }}'>> .env
       - name: 📂 Deployment to FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.6
         with:
           server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
+          username: ${{ secrets.FTP_USERNAME }}
