@@ -10,6 +10,9 @@ on:
       - feature
       - main
 # environnement
+jobs:
+  build:
+    runs-on: ubuntu@latest
 # image unbuntu
 
 # job : build (environnemt du projet)
