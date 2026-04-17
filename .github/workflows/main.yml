@@ -25,6 +25,9 @@ jobs:
           php-version: '8.3'
           extensions: pdo_mysql, intl, mbstring, zip
           tools: composer
+      - name: installer les dépendances
+        runs: | 
+          composer install
     services:
       # Service MySQL
       mysql:
