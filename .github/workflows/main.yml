@@ -26,7 +26,7 @@ jobs:
           extensions: pdo_mysql, intl, mbstring, zip
           tools: composer
       - name: installer les dépendances
-        runs: | 
+        run: | 
           composer install
     services:
       # Service MySQL
