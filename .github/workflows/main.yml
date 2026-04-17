@@ -14,20 +14,7 @@ jobs:
   build:
     # image unbuntu
     runs-on: ubuntu-latest
-    # etape : checkout code
-    steps:
-      - name: checkout recuperation du code
-        uses: actions/checkout@v6
-      #install de php
-      - name: Setup PHP with PECL extension
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.3'
-          extensions: pdo_mysql, intl, mbstring, zip
-          tools: composer
-      - name: installer les dépendances
-        run: | 
-          composer install
+    # base de données
     services:
       # Service MySQL
       mysql:
@@ -42,6 +29,24 @@ jobs:
           --health-interval=10s
           --health-timeout=5s
           --health-retries=5      
+    # etape : checkout code
+    steps:
+      - name: checkout recuperation du code
+        uses: actions/checkout@v6
+      #install de php
+      - name: Setup PHP with PECL extension
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: pdo_mysql, intl, mbstring, zip
+          tools: composer
+      - name: installer les dépendances
+        run: | 
+          composer install
+      - name: démarrer le serveur PHP
+        run: |
+          php -S 127.0.0.1:8000 -t public &
+    
 
 # job : build (environnemt du projet)
 
