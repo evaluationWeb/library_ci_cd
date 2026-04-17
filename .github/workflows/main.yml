@@ -54,12 +54,8 @@ jobs:
           composer install
       - name: démarrer le serveur PHP
         run: |
-          php -S 127.0.0.1:8000 -t public &
-# job : build (environnemt du projet)
-
-# compiler le code
-
-# job : test (environnement du projet)
-# installer cypress
-# lancer les tests cypress
+          php -S 127.0.0.1:8080 -t public &
+      # install cypress
+      - name : Test Cypress
+        uses: cypress-io/github-action@v6
 
