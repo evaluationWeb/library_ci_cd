@@ -9,6 +9,7 @@ on:
     branches:
       - feature
       - main
+  workflow_dispatch:
 # environnement
 jobs:
   build:
@@ -20,8 +21,8 @@ jobs:
       mysql:
         image: mysql:8.0
         env:
-          MYSQL_ROOT_PASSWORD: rootpw
-          MYSQL_DATABASE: taskdb
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: ci_cd
         ports:
           - 3306:3306
         options: >-
@@ -38,16 +39,22 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.3'
-          extensions: pdo_mysql, intl, mbstring, zip
+          extensions: mbstring, intl, pdo_mysql, sodium, zip
           tools: composer
+      - name: fichier .env.docker .env
+        run: |
+          cp .env.docker
+          echo "DATABASE_PASSWORD=rootpw">> .env
+          cat .env
+      - name: migrer la bdd
+        run : |
+          mysql -h 127.0.0.1 -P 3306 -u root -prootpw < db.sql
       - name: installer les dépendances
         run: | 
           composer install
       - name: démarrer le serveur PHP
         run: |
           php -S 127.0.0.1:8000 -t public &
-    
-
 # job : build (environnemt du projet)
 
 # compiler le code
