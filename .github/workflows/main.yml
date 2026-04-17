@@ -1,1 +1,22 @@
+# nom
+name: e2e tests cypress et PHP
+# declencheur
+on:
+  push:
+    branches:
+      - feature
+  pull_request:
+    branches:
+      - feature
+      - main
+# environnement
+# image unbuntu
+
+# job : build (environnemt du projet)
+# etape : checkout code
+# compiler le code
+
+# job : test (environnement du projet)
+# installer cypress
+# lancer les tests cypress
 
