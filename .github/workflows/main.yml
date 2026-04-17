@@ -58,4 +58,9 @@ jobs:
       # install cypress
       - name : Test Cypress
         uses: cypress-io/github-action@v6
-
+      - name: 📂 Deployment to FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}

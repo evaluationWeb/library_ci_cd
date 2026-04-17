@@ -27,6 +27,7 @@ http://localhost:8080
 Si besoin, vous pouvez lancer Composer dans le conteneur dedie :
 ```sh
 docker compose run --rm --profile tools composer install
+ou docker exec library_app composer install
 ```
 
 ### 3. Base de donnees
