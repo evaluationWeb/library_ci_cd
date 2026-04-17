@@ -44,7 +44,7 @@ jobs:
       - name: fichier .env.docker .env
         run: |
           cp .env.docker .env
-          echo "DATABASE_PASSWORD=rootpw">> .env
+          echo 'DATABASE_HOST=localhost'>> .env
           cat .env
       - name: migrer la bdd
         run : |
