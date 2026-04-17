@@ -25,7 +25,20 @@ jobs:
           php-version: '8.3'
           extensions: pdo_mysql, intl, mbstring, zip
           tools: composer
-          
+    services:
+      # Service MySQL
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: rootpw
+          MYSQL_DATABASE: taskdb
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h 127.0.0.1 -prootpw"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5      
 
 # job : build (environnemt du projet)
 
