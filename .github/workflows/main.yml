@@ -43,7 +43,7 @@ jobs:
           tools: composer
       - name: fichier .env.docker .env
         run: |
-          cp .env.docker
+          cp .env.docker .env
           echo "DATABASE_PASSWORD=rootpw">> .env
           cat .env
       - name: migrer la bdd
