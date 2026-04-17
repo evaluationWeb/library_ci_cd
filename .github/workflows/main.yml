@@ -21,12 +21,12 @@ jobs:
       mysql:
         image: mysql:8.0
         env:
-          MYSQL_ROOT_PASSWORD: rootpw
+          MYSQL_ROOT_PASSWORD: root
           MYSQL_DATABASE: ci_cd
         ports:
           - 3306:3306
         options: >-
-          --health-cmd="mysqladmin ping -h 127.0.0.1 -prootpw"
+          --health-cmd="mysqladmin ping -h 127.0.0.1 -proot"
           --health-interval=10s
           --health-timeout=5s
           --health-retries=5      
@@ -44,11 +44,11 @@ jobs:
       - name: fichier .env.docker .env
         run: |
           cp .env.docker .env
-          echo 'DATABASE_HOST=localhost'>> .env
+          echo 'DATABASE_HOST=localhost:3306'>> .env
           cat .env
       - name: migrer la bdd
         run : |
-          mysql -h 127.0.0.1 -P 3306 -u root -prootpw < db.sql
+          mysql -h 127.0.0.1 -P 3306 -u root -proot < db.sql
       - name: installer les dépendances
         run: | 
           composer install
