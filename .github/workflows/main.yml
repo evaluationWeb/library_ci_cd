@@ -12,8 +12,12 @@ on:
 # environnement
 jobs:
   build:
+    # image unbuntu
     runs-on: ubuntu-latest
-# image unbuntu
+    steps:
+      - name: checkout recuperation du code
+        uses: actions/checkout@v6
+    
 
 # job : build (environnemt du projet)
 # etape : checkout code
